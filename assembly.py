@@ -26,5 +26,4 @@ if __name__ == "__main__":
     # Assemble the Sequences and Print Optimal Alignments
     asm_k = 38
     targets = inference(corrected, asm_k)
-    for target in targets:
-        print(target)
+    assembly = print(targets[0].strip())
