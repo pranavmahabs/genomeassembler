@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
     # Remove Any Reads that were Found to be Contaminated.
     num_dropped = len(idxs)
-    print(f"Dropping {100 * num_dropped / len(reads)}% of the given reads.")
+    # print(f"Dropping {100 * num_dropped / len(reads)}% of the given reads.")
     drop = set(idxs)
     reads = [reads[i] for i in range(len(new_reads)) if i not in drop]
 
@@ -24,7 +24,8 @@ if __name__ == "__main__":
     corrected = correct(reads, corr_k, corr_d, corr_t)
 
     # Assemble the Sequences and Print Optimal Alignments
-    asm_k = 15
+    asm_k = 38
     targets = inference(corrected, asm_k)
     for target in targets:
         print(target)
+    print(len(targets))
