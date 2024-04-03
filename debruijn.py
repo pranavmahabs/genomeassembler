@@ -118,12 +118,12 @@ def inference(reads: list, k: int):
     for seq in sequences:
         if len(seq) == max_length:
             longest.append(seq)
-    return sorted(longest)
+    return sorted(list(set(longest)))
 
 
 if __name__ == "__main__":
     reads = extract_reads(sys.argv[1])
-    k = 5
+    k = len(reads[0])
     targets = inference(reads, k)
     for target in targets:
         print(target)
