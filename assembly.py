@@ -28,4 +28,3 @@ if __name__ == "__main__":
     targets = inference(corrected, asm_k)
     for target in targets:
         print(target)
-    print(len(targets))
