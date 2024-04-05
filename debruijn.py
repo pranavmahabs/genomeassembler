@@ -49,9 +49,9 @@ def build_debruijn(kmers: list, k: int):
     return graph
 
 
-def dfs(graph: nx.MultiDiGraph, node: str, path: list):
+def dfs(graph: nx.MultiDiGraph, node: str, path: list, visited: set):
     new_path = path + [node]
-    visited = set(new_path)
+    visited.add(node)
 
     out_neighbors = list(graph.out_edges(node))
     out_nodes = [edge[1] for edge in out_neighbors]
@@ -67,7 +67,7 @@ def dfs(graph: nx.MultiDiGraph, node: str, path: list):
     # Find maximal path from this position
     results = []
     for neighbor in extend_dfs:
-        this_dfs = dfs(graph, neighbor, new_path)
+        this_dfs = dfs(graph, neighbor, new_path, set(visited))
         for pathway in this_dfs:
             results.append([node] + pathway)
     return results
@@ -86,7 +86,7 @@ def path_searching(graph: nx.MultiDiGraph, k: int):
     # Perform DFS on each starting node.
     paths = []
     for starting in starting_nodes:
-        paths.extend(dfs(graph, starting, []))
+        paths.extend(dfs(graph, starting, [], set()))
 
     # Build the Potential Consensus Sequences
     sequences = []

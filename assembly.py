@@ -9,7 +9,7 @@ if __name__ == "__main__":
     vector = read_text_file(sys.argv[2])[0]
 
     # Decontaminate Reads
-    contam_k = 10
+    contam_k = 8
     seeds = get_seeds(vector, contam_k)
     idxs, new_reads = decontaminate(seeds, reads, contam_k, vector)
 
@@ -20,10 +20,11 @@ if __name__ == "__main__":
     reads = [reads[i] for i in range(len(new_reads)) if i not in drop]
 
     # Perform Correction of Reads
-    corr_k, corr_t, corr_d = 15, 2, 2
+    corr_k, corr_t, corr_d = 15, 2, 1
     corrected = correct(reads, corr_k, corr_d, corr_t)
 
     # Assemble the Sequences and Print Optimal Alignments
-    asm_k = 38
+    asm_k = 25
     targets = inference(corrected, asm_k)
-    assembly = print(targets[0].strip())
+    assembly = targets[0].strip()
+    print(assembly)
