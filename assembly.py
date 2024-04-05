@@ -24,7 +24,7 @@ if __name__ == "__main__":
     corrected = correct(reads, corr_k, corr_d, corr_t)
 
     # Assemble the Sequences and Print Optimal Alignments
-    asm_k = 25
+    asm_k = 30
     targets = inference(corrected, asm_k)
     assembly = targets[0].strip()
     print(assembly)
